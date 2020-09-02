@@ -114,3 +114,53 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const articles = document.querySelector('.articles')
+
+function articleMaker( {title, date, firstParagraph, secondParagraph, thirdParagraph} ){
+  const artTitle = document.createElement('div')
+  const h2Title = document.createElement('h2')
+  const dateTitle = document.createElement('p')
+  const p1 = document.createElement('p')
+  const p2 = document.createElement('p')
+  const p3 = document.createElement('p')
+  const btn = document.createElement('span')
+
+  // <div class="article">
+  //   <h2>{title of the article}</h2>
+  //   <p class="date">{date of the article}</p>
+
+  //   {three separate paragraph elements}
+
+  //   <span class="expandButton">+</span>
+  // </div>
+
+  artTitle.appendChild(h2Title)
+  artTitle.appendChild(dateTitle)
+  artTitle.appendChild(p1)
+  artTitle.appendChild(p2)
+  artTitle.appendChild(p3)
+  artTitle.appendChild(btn)
+
+  artTitle.classList.add('article')
+  dateTitle.classList.add('date')
+  btn.classList.add('expandButton')
+
+  h2Title.textContent = title
+  dateTitle.textContent = date
+  p1.textContent = firstParagraph
+  p2.textContent = secondParagraph
+  p3.textContent = thirdParagraph
+  btn.textContent = '+'
+  
+
+  btn.addEventListener('click', event => {
+    artTitle.classList.toggle('article-open')
+  })
+
+  return artTitle
+}
+
+data.forEach(artObj => {
+   const newArticle = articleMaker(artObj)
+   articles.appendChild(newArticle)
+})
